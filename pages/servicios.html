@@ -111,7 +111,7 @@
             <!-- formulario -->
             <h2 class="subTitulo">Pedido</h2>
             <section class="formulario">
-                <form action="https://formsubmit.co/gomezdevitae@gmail.com" method="post" enctype="multipart/form-data">
+                <form id="formPedido" action="https://formsubmit.co/gomezdevitae@gmail.com" method="post" enctype="multipart/form-data">
                     <label for="nombre">Nombre</label>
                     <input placeholder="Ingrese su nombre" type="text" name="nombre" id="nombre" required>
                     <label for="Email">Email</label>
@@ -139,7 +139,7 @@
                     <input type="hidden" name="_autoresponse" value="Gracias por escribirnos. Te responderemos pronto.">
 
 
-                    <input type="submit" value="Enviar">
+                    <button type="submit">Enviar</button>
                 </form>
             </section>
         </div>
@@ -198,6 +198,7 @@
         </div>
     </footer>
 
+    <script src="../JS/script.js"></script>
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>

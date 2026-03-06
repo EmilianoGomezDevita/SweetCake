@@ -66,14 +66,13 @@ restarProd.forEach(botonRestar => {
 
 })
 
-console.log(restarProd)
+//Mejoras en el formulario de servicios.html
 
-//contador de productos
+const formulario = document.getElementById("formPedido");
 
+formulario.addEventListener("submit", function() {
 
-
-contadorProd.addEventListener("click", () => {
-    if(contadorProd){
-        contador++;
-    }
-})
+    Event.preventDefault();
+    console.log("Formulario enviado");
+    alert("Gracias por su pedido!");
+});
