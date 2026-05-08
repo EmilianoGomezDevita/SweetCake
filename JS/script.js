@@ -1,78 +1,104 @@
 console.log("JS conectado")
+document.addEventListener("DOMContentLoaded", function () {
+    //carrito sin productos
+    const toastSinProd = document.getElementById("toastSinProd");
 
-//carrito sin productos
-const toastSinProd = document.getElementById("toastSinProd");
-
-//suamr producto al carrito
-const botonesCompra = document.querySelectorAll(".btn-comprar");
-const toast = document.getElementById("toast");
-const contadorProd = document.getElementById("carritoContador");
-//restar producto del carrito
-const restarProd = document.querySelectorAll(".btn-quitar");
-const toastRestar = document.getElementById("toastRestar");
+    //suamr producto al carrito
+    const botonesCompra = document.querySelectorAll(".btn-comprar");
+    const toast = document.getElementById("toast");
+    const contadorProd = document.getElementById("carritoContador");
+    //restar producto del carrito
+    const restarProd = document.querySelectorAll(".btn-quitar");
+    const toastRestar = document.getElementById("toastRestar");
 
 
 
-let contador = 0;
+    let contador = 0;
 
-botonesCompra.forEach(boton => {
-    boton.addEventListener("click", () => {
-        // Reiniciamos la animación si ya estaba corriendo
-        toast.classList.remove("show");
-        void toast.offsetWidth; // Truco para resetear animaciones CSS
-        toast.classList.add("show");
-        
-        // La animación de CSS se encarga de ocultarlo, 
-        // pero lo limpiamos en JS después de 3s
-        setTimeout(() => {
+    botonesCompra.forEach(boton => {
+        boton.addEventListener("click", () => {
+            // Reiniciamos la animación si ya estaba corriendo
             toast.classList.remove("show");
-        }, 3000);
-        
-        contador = contador + 1;
-        contadorProd.textContent = "Productos en carrito 🛒: " + contador;
+            void toast.offsetWidth; // Truco para resetear animaciones CSS
+            toast.classList.add("show");
+            
+            // La animación de CSS se encarga de ocultarlo, 
+            // pero lo limpiamos en JS después de 3s
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+            
+            contador = contador + 1;
+            contadorProd.textContent = "Productos en carrito 🛒: " + contador;
 
+        });
     });
-});
 
-restarProd.forEach(botonRestar => {
-    console.log("evento conectado");
-    botonRestar.addEventListener("click", () => {
+    restarProd.forEach(botonRestar => {
+        console.log("evento conectado");
+        botonRestar.addEventListener("click", () => {
 
-        console.log("click restar");
+            console.log("click restar");
 
-        if(contador === 0){
-            toastSinProd.classList.remove("show");
-            void toastSinProd.offsetWidth;
-            toastSinProd.classList.add("show")
+            if(contador === 0){
+                toastSinProd.classList.remove("show");
+                void toastSinProd.offsetWidth;
+                toastSinProd.classList.add("show")
+
+                setTimeout(() => {
+                    toastSinProd.classList.remove("show");
+                }, 3000);
+                return;
+            }
+
+            toastRestar.classList.remove("show");
+            void toastRestar.offsetWidth; // Truco para resetear animaciones CSS
+            toastRestar.classList.add("show");
 
             setTimeout(() => {
-                toastSinProd.classList.remove("show");
+                toastRestar.classList.remove("show");
             }, 3000);
-            return;
-        }
-
-        toastRestar.classList.remove("show");
-        void toastRestar.offsetWidth; // Truco para resetear animaciones CSS
-        toastRestar.classList.add("show");
-
-        setTimeout(() => {
-            toastRestar.classList.remove("show");
-        }, 3000);
 
 
-        contador--;
-        contadorProd.textContent = "Productos en carrito 🛒: " + contador;
+            contador--;
+            contadorProd.textContent = "Productos en carrito 🛒: " + contador;
+        });
+
+    })
+
+    //Mejoras en el formulario de servicios.html
+    const formulario = document.getElementById("formPedido");
+
+    formulario.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const datos = new FormData(formulario);
+
+        fetch(formulario.action, {
+            method: "POST",
+            body: datos,
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
+                // Opcional: Redirigir a la página de "gracias" que ya tienes configurada
+                const nextUrl = formulario.querySelector('input[name="_next"]').value;
+                if (nextUrl) {
+                    window.location.href = nextUrl;
+                }
+                formulario.reset(); // Limpiar el formulario
+            } else {
+                // El servidor respondió con un error (e.g., 404, 500)
+                alert("Hubo un problema al enviar su pedido. Por favor, inténtelo de nuevo más tarde.");
+            }
+        })
+        .catch(error => {
+            // Error de red o algo impidió que la petición se completara
+            console.error("Error en la petición fetch:", error);
+            alert("Hubo un error de conexión al enviar su pedido. Por favor, revise su conexión a internet.");
+        });
     });
 
-})
-
-//Mejoras en el formulario de servicios.html
-
-const formulario = document.getElementById("formPedido");
-
-formulario.addEventListener("submit", function() {
-
-    Event.preventDefault();
-    console.log("Formulario enviado");
-    alert("Gracias por su pedido!");
 });
