@@ -11,7 +11,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const restarProd = document.querySelectorAll(".btn-quitar");
     const toastRestar = document.getElementById("toastRestar");
 
+    ///LLAMANDO A LOS ATRIBUTOS DEL FORM
+    const nombreForm = document.getElementById("nombre").value
+    const emailForm = document.getElementById("email").value
+    const servicioForm = document.getElementById("servicio").value
+    const descripcionForm = document.getElementById("descripcion").value
+    ///creando el obj con los atrbutos del form
+    const pedido = {
+        Nombre: nombreForm,
+        Email: emailForm,
+        Servicio: servicioForm,
+        Descrpcion: descripcionForm
+    }
 
+    console.log(pedido);
 
     let contador = 0;
 
@@ -71,24 +84,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
-        const datos = new FormData(formulario);
 
-        fetch(formulario.action, {
+        fetch("http://localhost:3000/pedidos", {
             method: "POST",
-            body: datos,
-            headers: {
-                "Accept": "application/json"
-            }
+            body: JSON.stringify(pedido),
+            headers:{
+                "Content-Type": "application/json"
+            } 
         })
         .then(response => {
             if (response.ok) {
                 alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
-                // Opcional: Redirigir a la página de "gracias" que ya tienes configurada
-                const nextUrl = formulario.querySelector('input[name="_next"]').value;
-                if (nextUrl) {
-                    window.location.href = nextUrl;
-                }
-                formulario.reset(); // Limpiar el formulario
+
             } else {
                 // El servidor respondió con un error (e.g., 404, 500)
                 alert("Hubo un problema al enviar su pedido. Por favor, inténtelo de nuevo más tarde.");
