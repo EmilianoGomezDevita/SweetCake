@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const toastRestar = document.getElementById("toastRestar");
 
     ///LLAMANDO A LOS ATRIBUTOS DEL FORM
+    const alertaEnviar = document.getElementById("toastForm");
     const nombreForm = document.getElementById("nombre").value
     const emailForm = document.getElementById("email").value
     const servicioForm = document.getElementById("servicio").value
@@ -94,7 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if (response.ok) {
-                alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
+                ///alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
+                alertaEnviar.classList.remove("show");
+                void alertaEnviar.offsetWidth; // Truco para resetear animaciones CSS
+                alertaEnviar.classList.add("show");
 
             } else {
                 // El servidor respondió con un error (e.g., 404, 500)
