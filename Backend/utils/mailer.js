@@ -3,16 +3,16 @@ const nodemailer = require("nodemailer")
 
 const enviarEmail = async (emailDestino, asunto, mensaje) => {
     try{
-        const transporter = ndmailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
-                user: "gomezdevitaemiliano",
+                user: "gomezdevitaemiliano@gmail.com",
                 pass: "oipfvaryzfutsdle"
             }
         })
         
         const mailopts = {
-            from: "gomezdevitaemiliano",
+            from: "gomezdevitaemiliano@gmail.com",
             to: emailDestino,
             subject: asunto,
             text: mensaje

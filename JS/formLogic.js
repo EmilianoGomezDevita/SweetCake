@@ -10,19 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
             const pedido =  {
-                Nombre: document.getElementById("nombre").value,
-                Email: document.getElementById("email").value,
-                Servicio: document.getElementById("servicio").value,
-                Descripcion: document.getElementById("descripcion").value
+                cliente: document.getElementById("nombre").value,
+                email: document.getElementById("email").value,
+                servicio: document.getElementById("servicio").value,
+                descripcion: document.getElementById("descripcion").value
 
             }
-            fetch("http://localhost:3000/pedidos", {
-            method: "POST",
-            body: JSON.stringify(pedido),
-            headers: {
-                "Content-Type": "application/json",
-            },            
-            })
+            fetch("http://localhost:3000/api/pedidos", { // Si usar router.post("/pedidos")
+                    method: "POST",
+                    body: JSON.stringify(pedido),
+                    headers: { "Content-Type": "application/json" }
+                })
             .then((response) => {
                 if (response.ok) {
                     ///alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
