@@ -16,7 +16,7 @@ const crearPedido = async (req, res) => {
             .input("descripcion", mssql.VarChar, descripcion)
             .query("INSERT into Pedidos(cliente, email, servicio, descripcion) VALUES (@cliente, @email, @servicio, @descripcion)")
         //ENVIO DE EMAILS
-        await enviarEmail("egomezdevita@gmail.com", "Pedido", `Nuevo pedido de: ${cliente}, ${servicio}, ${descripcion}`)
+        await enviarEmail(process.env.EMAIL_USER, "Nuevo pedido recibido", `El cliente <b>${cliente}</b> solicita el servicio de <b>${servicio}</b>.<br>Descripción: ${descripcion}`)
         await enviarEmail(email, "Pedido recibido", "¡Gracias por tu compra! Tu pedido está en proceso.")
         // RESPUESTA FINAL AL CLIENTE
         res.status(201).json({
