@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formulario.addEventListener("submit", function (event) {
             event.preventDefault();
 
+            //Bloqueo del boton y cambio de texto
+            const boton = document.getElementById("btnEnviar")
+            boton.disabled = true
+            boton.value = "Enviando..."
             const pedido =  {
                 cliente: document.getElementById("nombre").value,
                 email: document.getElementById("email").value,
@@ -40,7 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert(
                 "Hubo un error de conexión al enviar su pedido. Por favor, revise su conexión a internet.",
                 );
-            });
+            })
+            .finally(() => {
+                boton.disabled = false
+                boton.value = "Enviar"
+            })
         }); 
     }
   
