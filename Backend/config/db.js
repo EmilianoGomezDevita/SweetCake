@@ -1,21 +1,17 @@
 const mssql = require("mssql")
 
 const config = {
-    user: "egomedev",
+    user: process.env.DB_USER,
 
-    password: "emi1234",
+    password: process.env.DB_PASSWORD,
 
-    server: "localhost",
+    server: process.env.DB_SERVER,
 
-    database: "SweetCakeDB",
-
-    port: 1433,
+    database: process.env.DB_DATABASE,
 
     options: {
-        //instanceName: "SQLEXPRESS",
         encrypt: false,
         trustServerCertificate: true,
-        //trustedConnection: true,
     },
 };
 
