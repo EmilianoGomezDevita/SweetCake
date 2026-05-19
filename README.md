@@ -1,64 +1,67 @@
-Sweet Cake – E-commerce Frontend 🍰
+SweetCake | E-commerce Full-Stack 🍰
 
-Sweet Cake es un proyecto de desarrollo web que simula una tienda online de pastelería. El sitio permite explorar productos, agregarlos al carrito y gestionar la cantidad de productos seleccionados mediante interacciones dinámicas en el navegador.
+SweetCake es una plataforma de e-commerce para pastelería artesanal, desarrollada con una arquitectura Full-Stack. El proyecto permite a los usuarios realizar pedidos mediante un formulario dinámico, gestionando la persistencia de datos en una base SQL y la comunicación automatizada mediante correo electrónico.
 
-El objetivo del proyecto fue practicar conceptos fundamentales del desarrollo frontend como estructura semántica, diseño responsive, manipulación del DOM y control de versiones con Git.
+⚙️ Arquitectura Técnica
 
-🚀 Funcionalidades
 
-Visualización de productos en formato de cards
+El proyecto implementa un flujo de datos completo entre el cliente y el servidor:
 
-Botón Agregar al carrito
+Frontend: Interfaz interactiva para gestión de carrito y envío de pedidos.
 
-Botón Quitar producto
+Backend: API REST construida con Node.js y Express que centraliza la lógica de negocio.
 
-Contador dinámico de productos en el carrito
+Base de Datos: Integración con SQL Server para almacenamiento estructurado de pedidos.
 
-Mensajes toast para feedback del usuario
+Notificaciones: Servicio automatizado de envío de emails de confirmación vía nodemailer.
 
-Prevención de valores negativos en el carrito
+🛠️ Tecnologías
 
-Interacción con JavaScript y manipulación del DOM
 
-🛠️ Tecnologías utilizadas
+Frontend: HTML5, CSS3 / SCSS, JavaScript (ES6+).
 
-HTML5
+Backend: Node.js, Express, mssql (SQL Server driver).
 
-CSS3 / SCSS
+Base de Datos: Microsoft SQL Server.
 
-JavaScript
+Integraciones: Nodemailer (Gmail SMTP).
 
-Git & GitHub
+🚀 Funcionalidades Backend
 
-📚 Lo que practiqué en este proyecto
 
-Manipulación del DOM con JavaScript
+Endpoints REST: Ruta /api/pedidos para el procesamiento de nuevos pedidos.
 
-Uso de event listeners
+Persistencia: Inserción de datos transaccional en base de datos (INSERT INTO Pedidos).
 
-Control de estado con variables (contador de carrito)
+Comunicación automatizada: Envío dual de correos:
 
-Manejo de clases dinámicas en CSS
+Notificación interna: Al equipo de SweetCake con los detalles del pedido.
 
-Estructuración de proyectos frontend
+Confirmación al cliente: Mensaje automático de agradecimiento y estado de proceso.
 
-Control de versiones con Git
+🧠 Desafíos Técnicos Resueltos
 
-📦 Posibles mejoras futuras
 
-Guardar el carrito con LocalStorage
+Conectividad: Gestión de pools de conexión asíncronos a SQL Server.
 
-Filtro de productos por categoría
+Seguridad: Uso de variables de entorno (dotenv) para proteger credenciales de base de datos y servicios de correo.
 
-Buscador de productos
+Arquitectura: Separación de responsabilidades en controllers, routes, config y utils.
 
-Contador individual por producto
+📦 Cómo ejecutar el proyecto
 
-Integración con backend o API
+
+1. Clonar el repositorio.
+
+2. Instalar dependencias: npm install express cors mssql nodemailer dotenv.
+
+3 .Configurar el archivo .env con las variables: DB_USER, DB_PASSWORD, DB_SERVER, DB_DATABASE, EMAIL_USER, EMAIL_PASS.
+
+4. Ejecutar el servidor: node index.js.
 
 👨‍💻 Autor
 
 Emiliano Gómez Devita
 
-Estudiante de la Tecnicatura Universitaria en Programación – UTN
-Interesado en desarrollo web.
+
+Estudiante de la Tecnicatura Universitaria en Programación (UTN FRGP). Enfocado en el desarrollo de aplicaciones web Full-Stack.
