@@ -5,51 +5,48 @@ document.addEventListener("DOMContentLoaded", function () {
   const formulario = document.getElementById("formPedido");
   //Mejoras en el formulario de servicios.html
 
-    if(formulario){
-        formulario.addEventListener("submit", function (event) {
-            event.preventDefault();
+  if (formulario) {
+    formulario.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-            //Bloqueo del boton y cambio de texto
-            const boton = document.getElementById("btnEnviar")
-            boton.disabled = true
-            boton.value = "Enviando..."
-            const pedido =  {
-                cliente: document.getElementById("nombre").value,
-                email: document.getElementById("email").value,
-                servicio: document.getElementById("servicio").value,
-                descripcion: document.getElementById("descripcion").value
-
-            }
-            fetch("http://localhost:3000/api/pedidos", { // Si usar router.post("/pedidos")
-                    method: "POST",
-                    body: JSON.stringify(pedido),
-                    headers: { "Content-Type": "application/json" }
-                })
-            .then((response) => {
-                if (response.ok) {
-                    ///alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
-                    alertaEnviar.classList.remove("show");
-                    void alertaEnviar.offsetWidth; // Truco para resetear animaciones CSS
-                    alertaEnviar.classList.add("show");
-
-                } else {
-                alert(
-                    "Hubo un problema al enviar su pedido. Por favor, inténtelo de nuevo más tarde.",
-                );
-                }
-            })
-            .catch((error) => {
-                // Error de red o algo impidió que la petición se completara
-                console.error("Error en la petición fetch:", error);
-                alert(
-                "Hubo un error de conexión al enviar su pedido. Por favor, revise su conexión a internet.",
-                );
-            })
-            .finally(() => {
-                boton.disabled = false
-                boton.value = "Enviar"
-            })
-        }); 
-    }
-  
+      //Bloqueo del boton y cambio de texto
+      const boton = document.getElementById("btnEnviar");
+      boton.disabled = true;
+      boton.value = "Enviando...";
+      const pedido = {
+        cliente: document.getElementById("nombre").value,
+        email: document.getElementById("email").value,
+        servicio: document.getElementById("servicio").value,
+        descripcion: document.getElementById("descripcion").value,
+      };
+      fetch("/api/pedidos", {
+        method: "POST",
+        body: JSON.stringify(pedido),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            ///alert("¡Gracias por su pedido! Su formulario ha sido enviado con éxito.");
+            alertaEnviar.classList.remove("show");
+            void alertaEnviar.offsetWidth; // Truco para resetear animaciones CSS
+            alertaEnviar.classList.add("show");
+          } else {
+            alert(
+              "Hubo un problema al enviar su pedido. Por favor, inténtelo de nuevo más tarde.",
+            );
+          }
+        })
+        .catch((error) => {
+          // Error de red o algo impidió que la petición se completara
+          console.error("Error en la petición fetch:", error);
+          alert(
+            "Hubo un error de conexión al enviar su pedido. Por favor, revise su conexión a internet.",
+          );
+        })
+        .finally(() => {
+          boton.disabled = false;
+          boton.value = "Enviar";
+        });
+    });
+  }
 });

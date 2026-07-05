@@ -1,0 +1,8 @@
+{
+  "name": "sweetcake",
+  "version": "1.0.0",
+  "dependencies": {
+    "mssql": "^12.5.2",
+    "nodemailer": "^8.0.7"
+  }
+}

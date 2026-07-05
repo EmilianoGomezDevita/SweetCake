@@ -21,7 +21,6 @@ create table Pedidos
 	--FK de codCliete
 )
 */
---tabla de DetallePedido
 
 --Tabla de Gemini
 create table Pedidos
