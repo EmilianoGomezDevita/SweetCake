@@ -1,64 +1,78 @@
-Sweet Cake – E-commerce Frontend 🍰
+# SweetCake | E-commerce Full-Stack 🍰
 
-Sweet Cake es un proyecto de desarrollo web que simula una tienda online de pastelería. El sitio permite explorar productos, agregarlos al carrito y gestionar la cantidad de productos seleccionados mediante interacciones dinámicas en el navegador.
+SweetCake es un proyecto Full-Stack de una tienda online de pastelería artesanal. El objetivo es simular el flujo completo de un pedido: desde que el usuario completa el formulario hasta que el servidor procesa la solicitud, almacena la información y envía las notificaciones correspondientes.
 
-El objetivo del proyecto fue practicar conceptos fundamentales del desarrollo frontend como estructura semántica, diseño responsive, manipulación del DOM y control de versiones con Git.
+## 🚀 Funcionalidades
 
-🚀 Funcionalidades
+- Catálogo de productos.
+- Agregar y quitar productos.
+- Contador dinámico del carrito.
+- Formulario de pedidos.
+- API REST desarrollada con Express.
+- Envío de pedidos mediante Fetch API.
+- Preparado para integración con SQL Server.
+- Preparado para envío automático de correos electrónicos.
 
-Visualización de productos en formato de cards
+## 🛠️ Tecnologías
 
-Botón Agregar al carrito
+### Frontend
 
-Botón Quitar producto
+- HTML5
+- CSS3
+- SCSS
+- JavaScript (ES6)
 
-Contador dinámico de productos en el carrito
+### Backend
 
-Mensajes toast para feedback del usuario
+- Node.js
+- Express
+- CORS
+- Nodemailer
+- MSSQL
+- Dotenv
 
-Prevención de valores negativos en el carrito
+### Base de datos
 
-Interacción con JavaScript y manipulación del DOM
+- Microsoft SQL Server
 
-🛠️ Tecnologías utilizadas
+## 📚 Conceptos aplicados
 
-HTML5
+- Manipulación del DOM.
+- Fetch API.
+- Arquitectura Cliente - Servidor.
+- API REST.
+- Rutas y Controllers.
+- Variables de entorno.
+- Control de versiones con Git y GitHub.
 
-CSS3 / SCSS
+## 📦 Instalación
 
-JavaScript
+1. Clonar el repositorio.
 
-Git & GitHub
+2. Instalar dependencias:
 
-📚 Lo que practiqué en este proyecto
+```bash
+pnpm install
+```
 
-Manipulación del DOM con JavaScript
+3. Ejecutar el backend:
 
-Uso de event listeners
+```bash
+pnpm start
+```
 
-Control de estado con variables (contador de carrito)
+## 🚧 Próximas mejoras
 
-Manejo de clases dinámicas en CSS
+- Despliegue completo en Vercel.
+- Persistencia de pedidos en SQL Server.
+- Confirmación automática por email.
+- Panel de administración.
+- Pasarela de pagos.
 
-Estructuración de proyectos frontend
+## 👨‍💻 Autor
 
-Control de versiones con Git
+**Emiliano Gómez Devita**
 
-📦 Posibles mejoras futuras
+Estudiante de la Tecnicatura Universitaria en Programación (UTN FRGP).
 
-Guardar el carrito con LocalStorage
-
-Filtro de productos por categoría
-
-Buscador de productos
-
-Contador individual por producto
-
-Integración con backend o API
-
-👨‍💻 Autor
-
-Emiliano Gómez Devita
-
-Estudiante de la Tecnicatura Universitaria en Programación – UTN
-Interesado en desarrollo web.
+Actualmente enfocado en el desarrollo de aplicaciones Web Full-Stack.
