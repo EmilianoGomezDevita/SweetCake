@@ -1,32 +1,15 @@
-const mssql = require("mssql");
+const { Pool } = require("pg");
 
-const config = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
-  database: process.env.DB_DATABASE,
-  options: {
-    encrypt: true, // recomendado en producción (Azure SQL, etc.)
-    trustServerCertificate: true,
-  },
-};
+let pool = null;
 
-let poolPromise = null;
-
-async function conectarDB() {
-  if (!poolPromise) {
-    poolPromise = mssql.connect(config)
-      .then((pool) => {
-        console.log("Conectado a SQL Server");
-        return pool;
-      })
-      .catch((err) => {
-        poolPromise = null; // permite reintentar en la próxima invocación
-        console.error("Error al conectar:", err);
-        throw err;
-      });
+function getPool() {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    });
   }
-  return poolPromise;
+  return pool;
 }
 
-module.exports = { mssql, conectarDB };
+module.exports = { getPool };

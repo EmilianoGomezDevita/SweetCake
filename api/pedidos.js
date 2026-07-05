@@ -1,8 +1,7 @@
-const { mssql, conectarDB } = require("./_lib/db");
+const { getPool } = require("./_lib/db");
 const { enviarEmail } = require("./_lib/mailer");
 
 module.exports = async (req, res) => {
-  // CORS (por si en algún momento el front no está en el mismo dominio)
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -18,13 +17,11 @@ module.exports = async (req, res) => {
   try {
     const { cliente, email, servicio, descripcion } = req.body;
 
-    const pool = await conectarDB();
-    await pool.request()
-      .input("cliente", mssql.VarChar, cliente)
-      .input("Email", mssql.VarChar, email)
-      .input("servicio", mssql.VarChar, servicio)
-      .input("descripcion", mssql.VarChar, descripcion)
-      .query("INSERT into Pedidos(cliente, email, servicio, descripcion) VALUES (@cliente, @Email, @servicio, @descripcion)");
+    const pool = getPool();
+    await pool.query(
+      "INSERT INTO Pedidos (cliente, email, servicio, descripcion) VALUES ($1, $2, $3, $4)",
+      [cliente, email, servicio, descripcion]
+    );
 
     await enviarEmail(
       process.env.EMAIL_USER,
